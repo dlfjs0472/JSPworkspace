@@ -1,5 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="site0617.model.domain.Gallery"%>
+<%@page import="site0617.model.gallery.dao.GalleryDAO"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%! GalleryDAO galleryDAO = new GalleryDAO();%>
+<%
+	//리스트페이지에서 전송된 파라미터 받기
+	String gallery_id =request.getParameter("gallery_id");
+	Gallery gallery=galleryDAO.select(Integer.parseInt(gallery_id)); //레코드 1건 가져오기
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,11 +48,28 @@ input[type=button]:hover {
 $(function(){
 	CKEDITOR.replace("content");
 	
+	var btn =$("input[type='button']"); //버튼을 배열로 받음
 	//버튼에 이벤트 연결하기 
-	$("input[type='button']").click(function(){
-		regist();	
+	$(btn[0]).click(function(){
+		edit();	
+	});
+	$(btn[1]).click(function(){
+		del();	
+	});
+	$(btn[2]).click(function(){
+		location.href="/gallery/list.jsp";	
 	});
 });
+function del(){
+	if(confirm("삭제하시겠어요??")){
+		//삭제를 처리하는 페이지에 요청을 시도!!
+		$("form").attr({
+			"action":"/delete",
+			"method":"post"
+		});	
+		$("form").submit();
+	}
+}
 //주의!!! 클라이언트가 서버에 문자열이 아닌 파일자체를 전송하려면 반드시 
 //form태그에 multipart/form-data가 명시되어야 한다!!
 //이때, 서버에서는 기존의 request 객체가 보유한 getParameter() 메서드로는
@@ -67,12 +91,19 @@ function regist(){
 
 <div class="container">
   <form>
-    <input type="text" 	name="title" 			placeholder="제목..">
-    <input type="text" 	name="writer" 		placeholder="작성자..">
-    <textarea 					name="content" 	placeholder="내용.." style="height:200px"></textarea>
+  
+  	<!-- 아래의 히든은 수정, 삭제 모두 공통이므로... -->
+  	<input type="hidden" name="filename" value="<%=gallery.getFilename()%>">
+  	<input type="hidden" name="gallery_id" value="<%=gallery_id %>">
+  	
+    <input type="text" 	name="title" 			value="<%=gallery.getTitle()%>">
+    <input type="text" 	name="writer" 		value="<%=gallery.getWriter()%>">
+    <textarea name="content" 	style="height:200px"><%=gallery.getContent()%></textarea>
     <input type="file" name="myfile">
     <p>
-    <input type="button" value="Submit">
+    <input type="button" value="수정">
+    <input type="button" value="삭제">
+    <input type="button" value="목록">
   </form>
 </div>
 
