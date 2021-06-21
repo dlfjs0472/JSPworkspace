@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 	
+
 	<!-- 서블릿 매핑 -->
 	<servlet>
 		<servlet-name>uploadServlet</servlet-name>
@@ -24,6 +25,17 @@
 	<servlet-mapping>
 		<servlet-name>deleteServlet</servlet-name>
 		<url-pattern>/delete</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 서블릿 매핑 -->
+	<servlet>
+		<servlet-name>photoServlet</servlet-name>
+		<servlet-class>site0617.photo.RegistServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>photoServlet</servlet-name>
+		<url-pattern>/photo/upload</url-pattern>
 	</servlet-mapping>
 	
 	<display-name>site0617</display-name>
