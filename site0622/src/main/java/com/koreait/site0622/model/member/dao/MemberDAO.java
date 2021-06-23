@@ -11,6 +11,7 @@ public interface MemberDAO {
 	public int delete(Member member);//회원삭제
 	public List selectAll();//회원목록
 	public Member select(int member_id);//1명의 회원가져오기
+	public Member select(Member member); //id+password를 이용한 회원정보 가져오기
 	public int update(Member member);//회원수정
 
 }

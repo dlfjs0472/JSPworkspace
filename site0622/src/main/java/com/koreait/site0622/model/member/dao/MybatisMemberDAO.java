@@ -17,9 +17,12 @@ public class MybatisMemberDAO implements MemberDAO{
 		configManager.closeSession(sqlSession); 
 		return member;
 	}
-	
 	public int regist(Member member) {
-		return 0;
+		SqlSession sqlSession=configManager.getSession();
+		int result= sqlSession.insert("Member.regist", member); //DML
+		sqlSession.commit(); //DML이기에
+		configManager.closeSession(sqlSession); 
+		return result;
 	}
 	public int delete(Member member) {
 		return 0;
@@ -29,6 +32,12 @@ public class MybatisMemberDAO implements MemberDAO{
 	}
 	public Member select(int member_id) {
 		return null;
+	}
+	public Member select(Member member) {
+		SqlSession sqlSession=configManager.getSession();
+		Member obj = sqlSession.selectOne("Member.loginCheck", member); //obj=회원정보를 가지고있는 결과
+		configManager.closeSession(sqlSession); 
+		return obj;
 	}
 	public int update(Member member) {
 		return 0;
