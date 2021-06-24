@@ -29,7 +29,10 @@ public class MybatisNewsDAO implements NewsDAO{
 	}
 
 	public News select(int news_id) {
-		return null;
+		SqlSession sqlSession=configManager.getSession();
+		News news = sqlSession.selectOne("News.select", news_id);
+		configManager.closeSession(sqlSession);
+		return news;
 	}
 
 	public int update(News news) {

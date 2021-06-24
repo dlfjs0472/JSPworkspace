@@ -1,0 +1,3 @@
+[mybatis 조인]
+-association(1:1관계)
+-resultMap(커스텀 매핑)
