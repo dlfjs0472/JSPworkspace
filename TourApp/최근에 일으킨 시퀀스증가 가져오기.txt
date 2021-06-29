@@ -1,0 +1,20 @@
+create table test(
+test_id number primary key
+, name varchar(20)
+);
+
+create sequence seq_test
+increment by 1
+start with 1;
+
+
+my sql 현재 세션에서 일으킨 pk의 최근값
+select last_insert_id()
+
+oracle 현재 세션에서 가장 최근에 일으킨 시퀀스증가 가져오기
+select seq_test.currval from dual;
+
+
+
+
+

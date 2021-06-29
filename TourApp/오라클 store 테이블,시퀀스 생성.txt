@@ -1,0 +1,13 @@
+create table store(
+store_id number primary key
+, addr1 varchar(100)
+, title varchar(50)
+, content clob
+, mapx number
+, mapy number
+, firstimage varchar(100)
+)
+
+create sequence seq_store
+increment by 1
+start with 1
