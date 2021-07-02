@@ -103,13 +103,14 @@ public class JdbcBoardDAO implements BoardDAO{
 		int result=0;
 		
 		con=pool.getConnection();
-		String sql="update board set title=?, content=?, where board_id=?";
+		String sql="update board set title=?, writer=?, content=? where board_id=?";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2,board.getWriter());
 			pstmt.setString(3, board.getContent());
 			pstmt.setInt(4, board.getBoard_id());
+			
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -117,6 +118,7 @@ public class JdbcBoardDAO implements BoardDAO{
 			pool.release(con, pstmt);
 		}
 		return result;
+
 	}
 
 

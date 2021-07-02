@@ -1,0 +1,29 @@
+create table member( 
+ member_id number primary key 
+, name varchar(20)
+, phone varchar(13)
+, addr varchar(100)
+, photo varchar(50)
+);
+create sequence seq_member
+increment by 1
+start with 1;
+
+
+
+create table license(
+    license_id  number primary key 
+  , member_id number 
+  , title varchar(30)
+  , constraint fk_member_license  foreign key(member_id) 
+    references member(member_id)
+);
+
+create sequence seq_license
+increment by 1
+start with 1;
+
+
+
+
+
