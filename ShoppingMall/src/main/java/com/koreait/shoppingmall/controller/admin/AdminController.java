@@ -4,12 +4,20 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.koreait.shoppingmall.domain.Admin;
+import com.koreait.shoppingmall.exception.MemberExistException;
+import com.koreait.shoppingmall.model.service.admin.AdminService;
 
 /**
  * Handles requests for the application home page.
@@ -19,6 +27,8 @@ public class AdminController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
+	@Autowired
+	private AdminService adminService;
 	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -36,9 +46,32 @@ public class AdminController {
 	
 	//로그인 요청 처리 
 	
-	 //@RequestMapping(value="/login", method=RequestMethod.POST) public String
-	 //login(Admin admin) {
+	 @RequestMapping(value="/login", method=RequestMethod.POST) 
+	 public String login(Admin admin, HttpSession session) {
+		 logger.info("아이디는 {}",admin.getHost_id());
+		 
+		 
+		 //3단계:일시키기
+		 Admin obj=adminService.login(admin);
+		 
+		 //4단계: 저장
+		 session.setAttribute("admin", obj); //request가 아닌 세션에 저장함
 	 
-	 //return ""; }
+		 return "/admin/main/index"; //어드민 페이지명
+	 }
+	 
+	 //위의 요청을 처리하는 메서드 중에서 어느것 하나라도 예외가 발생하면 아래의 메서드가 동작하게 된다
+	 @ExceptionHandler(MemberExistException.class)
+	 public String handleException(MemberExistException e, Model model) {
+		 model.addAttribute("e", e);
+		 
+		 return "error/result";
+	 }
 	 
 }
+
+
+
+
+
+
