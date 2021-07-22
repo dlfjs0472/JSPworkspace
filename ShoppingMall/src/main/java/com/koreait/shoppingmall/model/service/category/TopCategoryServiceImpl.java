@@ -22,7 +22,7 @@ public class TopCategoryServiceImpl implements TopCategoryService{
 	@Override
 	public List selectAll() {
 
-		return null;
+		return topCategoryDAO.selectAll();
 	}
 
 	@Override
