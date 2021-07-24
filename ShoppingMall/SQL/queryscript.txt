@@ -16,6 +16,7 @@ create table product(
 	, brand varchar(25)
 	, price int default 0
 	, info text
+	, product_img varchar(25)
 )default character set utf8;
 
 
@@ -33,4 +34,14 @@ select * from subcategory where topcategory_id =(
  select topcategory_id from topcategory where top_name ='Down'
 );
 
+
+
+--product , subcategory, topcategory 를 조인하자!
+
+select t.topcategory_id , s.subcategory_id , sub_name
+, product_id, product_name, brand, price, info, product_img
+from topcategory t, subcategory s ,product p 
+where t.topcategory_id = s.topcategory_id 
+and s.subcategory_id = p.subcategory_id
+and product_id=5;
 
