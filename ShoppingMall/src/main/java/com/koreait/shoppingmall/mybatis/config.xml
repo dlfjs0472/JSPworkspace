@@ -9,6 +9,7 @@
 		<typeAlias type="com.koreait.shoppingmall.domain.TopCategoryCount" alias="TopCategoryCount"/>
 		<typeAlias type="com.koreait.shoppingmall.domain.SubCategory" alias="SubCategory"/>
 		<typeAlias type="com.koreait.shoppingmall.domain.Product" alias="Product"/>
+		<typeAlias type="com.koreait.shoppingmall.domain.Board" alias="Board"/>
 	</typeAliases>
 
 	<mappers>
@@ -16,5 +17,6 @@
 		<mapper resource="com/koreait/shoppingmall/mybatis/TopCategoryMapper.xml" />
 		<mapper resource="com/koreait/shoppingmall/mybatis/SubCategoryMapper.xml" />
 		<mapper resource="com/koreait/shoppingmall/mybatis/ProductMapper.xml" />
+		<mapper resource="com/koreait/shoppingmall/mybatis/BoardMapper.xml" />
 	</mappers>
 </configuration>

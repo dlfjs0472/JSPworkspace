@@ -45,3 +45,13 @@ where t.topcategory_id = s.topcategory_id
 and s.subcategory_id = p.subcategory_id
 and product_id=5;
 
+
+--고객센터의 게시판 
+create table board(
+	board_id int primary key auto_increment 
+	, title varchar(100)
+	, writer varchar(20)
+	, content text
+	, regdate timestamp default now()
+	, hit int default 0
+) default character set utf8;

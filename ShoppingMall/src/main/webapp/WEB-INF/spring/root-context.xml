@@ -45,6 +45,7 @@
          </list>
       </property>
    </bean>
+   
    <!-- jackson binder등록(컨버터)-->
    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" 
       id="mappingJackson2HttpMessageConverter">
