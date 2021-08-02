@@ -5,11 +5,20 @@
 	<insert id="insert" parameterType="Product">
 		insert into product(subcategory_id, product_name, brand, price, info, product_img)
 		values(#{subcategory_id},#{product_name},#{brand},#{price},#{info},#{product_img})
-	</insert>	
+	</insert>
 	
 	<select id="selectAll" resultType="Product">
 		select * from product order by product_id desc
 	</select>	
+	
+	<select id="selectNewItem" resultType="Product">
+		select * from product order by product_id desc limit 4;
+	</select>	
+	
+	<!-- 하위 카테고리에 소속된 상품 목록 -->
+	<select id="selectBySubCategory" parameterType="int" resultType="Product">
+		select * from product where subcategory_id=#{subcategory_id}
+	</select>
 	
 
 	<!-- 상품상세 정보-->
@@ -37,5 +46,12 @@
 	<delete id="delete" parameterType="int">
 		delete from product where product_id=#{product_id}
 	</delete>
+	
+	
+	
+	
+	
+	
+	
 	
 </mapper>

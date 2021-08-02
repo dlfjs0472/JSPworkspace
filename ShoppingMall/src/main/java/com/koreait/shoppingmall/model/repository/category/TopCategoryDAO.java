@@ -11,6 +11,7 @@ public interface TopCategoryDAO {
 	public TopCategory select(int topCategory_id);
 	public void update(TopCategory topCategory);
 	public void delete(int topCategory_id);
+	public List selectChild();
 	
 
 }

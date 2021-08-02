@@ -49,4 +49,10 @@ public class TopCategoryServiceImpl implements TopCategoryService{
 		
 	}
 
+	@Override
+	public List selectChild() {
+
+		return topCategoryDAO.selectChild();
+	}
+
 }

@@ -18,6 +18,8 @@ public class ProductServiceImpl implements ProductService{
 	public List selectAll() {
 		return productDAO.selectAll();
 	}
+	
+
 
 	@Override
 	public Product select(int product_id) {
@@ -38,6 +40,11 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public void delete(int product_id) throws DMLException{
 		productDAO.delete(product_id);		
+	}
+
+	@Override
+	public List selectBySubCategory(int subcategory_id) {
+		return productDAO.selectBySubCategory(subcategory_id);
 	}
 	
 	
